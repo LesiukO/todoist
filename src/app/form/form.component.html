@@ -1,0 +1,15 @@
+
+
+<mat-card class="form-card">
+  <form id="todo-form" (ngSubmit)="createTodo()">
+    <div class="form-group">
+      <mat-form-field >
+        <mat-label>Add todo</mat-label>
+        <input name="title" [(ngModel)]="title" matInput placeholder="Add todo item...">
+      </mat-form-field>
+    </div>
+    <!-- <input mat-raised-button color="primary" type="submit" value="Add todo"> -->
+    <button mat-raised-button color="primary" type="submit" form="todo-form" [disabled]="!this.title">Add todo</button>
+    <button mat-raised-button color="warn" *ngIf="this.title" type="text" (click)="clearForm()" >Clear</button>
+  </form>
+</mat-card>
