@@ -19,7 +19,7 @@ import Timestamp = firestore.Timestamp;
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  displayedColumns: string[] = ['userId', 'id', 'title', 'completed', 'createdDate', 'deadlineDate'];
+  displayedColumns: string[] = ['userId', 'id', 'title', 'createdDate', 'deadlineDate', 'completed', 'delete'];
   dataSource: any;
 
   constructor(
@@ -32,8 +32,11 @@ export class TodosComponent implements OnInit {
   }
 
   checkTodo(todo) {
-    console.log(todo);
-    this.todoService.checkTodo();
+    this.todoService.checkTodo(todo);
+  }
+
+  deleteTodo(todo) {
+    this.todoService.deleteTodo(todo);
   }
 
 

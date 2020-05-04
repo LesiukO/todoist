@@ -22,19 +22,6 @@
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
-    <!-- Symbol completed -->
-    <ng-container matColumnDef="completed">
-      <th mat-header-cell *matHeaderCellDef> completed </th>
-      <td mat-cell *matCellDef="let element">
-        <mat-checkbox
-          color="primary"
-          [(ngModel)]="element.completed"
-          (click)="checkTodo(element)">
-          {{element.completed}}
-
-        </mat-checkbox>
-      </td>
-    </ng-container>
 
     <!-- Symbol createdDate -->
     <ng-container matColumnDef="createdDate">
@@ -48,6 +35,30 @@
       <td mat-cell *matCellDef="let element"> {{element.deadlineDate | date  }} </td>
     </ng-container>
 
+    <!-- Symbol completed -->
+    <ng-container matColumnDef="completed">
+      <th mat-header-cell *matHeaderCellDef> completed </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox
+          color="primary"
+          [(ngModel)]="element.completed"
+          (click)="checkTodo(element)">
+          {{element.completed}}
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Symbol delete -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" [disabled]="!element.completed" type="text" (click)="deleteTodo(element)" >
+          delete
+          <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+        </button>
+      </td>
+
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"  ></tr>
