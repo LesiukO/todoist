@@ -13,14 +13,17 @@ import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 
 
+
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  displayedColumns: string[] = ['userId', 'id', 'title', 'createdDate', 'deadlineDate', 'completed', 'delete'];
+  // displayedColumns: string[] = ['userId', 'id', 'title', 'createdDate', 'deadlineDate', 'completed', 'delete'];
+  displayedColumns: string[] = ['title', 'createdDate', 'deadlineDate', 'completed', 'delete'];
   dataSource: any;
+
 
   constructor(
     private todoService: TodosService,
@@ -37,6 +40,11 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(todo) {
     this.todoService.deleteTodo(todo);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
